@@ -59,4 +59,4 @@ jobs:
       - name: Verify Deployment
         run: |
           kubectl rollout status deployment/myproject
-          kubectl get ingress -n default       # <-- Check ingress is created
+          kubectl get ingress -n default       # <-- Check ingress is created or not
