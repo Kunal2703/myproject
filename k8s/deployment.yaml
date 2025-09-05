@@ -17,6 +17,6 @@ spec:
         eks.amazonaws.com/nodegroup: django-ng
       containers:
         - name: myproject
-          image: 205930634535.dkr.ecr.ap-south-1.amazonaws.com/myproject:latest
+          image: <AWS_ACCOUNT_ID>.dkr.ecr.ap-south-1.amazonaws.com/myproject:latest
           ports:
             - containerPort: 80
