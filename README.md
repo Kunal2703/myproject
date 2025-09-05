@@ -219,7 +219,7 @@ Your Django app will be accessible through the ALB address listed under `kubectl
 ## 📄 Terraform Infrastructure Reference
 
 For full infrastructure provisioning (VPC, ALB, RDS, EC2, Bastion host, Security Groups), refer to the Terraform repo:
-[https://github.com/Kunal2703/myproject-terraform](https://github.com/Kunal2703/myproject-terraform)
+[https://github.com/Kunal2703/myproject-terraform.git](https://github.com/Kunal2703/myproject-terraform.git)
 
 ---
 
