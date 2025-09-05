@@ -1,7 +1,7 @@
 # MyProject - Django Cover Letter Demo
 
 A simple Django demo application that serves a static **Cover Letter** page.
-This project is structured for **local development** and **Kubernetes deployment (EKS)** with ALB ingress.
+This project is structured for local development and Kubernetes deployment (EKS) with ALB ingress.
 
 ---
 
@@ -12,10 +12,11 @@ This project is structured for **local development** and **Kubernetes deployment
 * Ready for static files (CSS/JS/images)
 * Kubernetes-ready deployment manifests
 * Easy to extend for additional Django apps
+* CI/CD ready for automated deployment
 
 ---
 
-## 📦 Local Installation & Setup
+## 💾 Local Installation & Setup
 
 ### 1. Clone the repository
 
@@ -26,14 +27,14 @@ cd myproject
 
 ### 2. Create and activate a virtual environment
 
-**macOS/Linux:**
+**macOS/Linux**
 
 ```bash
 python -m venv venv
 source venv/bin/activate
 ```
 
-**Windows:**
+**Windows**
 
 ```bash
 python -m venv venv
@@ -62,19 +63,20 @@ Open [http://127.0.0.1:8000/](http://127.0.0.1:8000/) to view your Cover Letter 
 
 ---
 
-## 🛠 Tech Stack
+## 🔧 Tech Stack
 
 * Python 3
 * Django 5.x
 * HTML/CSS (static page)
 * Kubernetes (Deployment, Service, Ingress)
 * AWS EKS / ALB
+* Docker
 
 ---
 
 ## 📂 Project Structure
 
-```
+```text
 myproject/
 ├── demo/
 │   ├── templates/
@@ -89,13 +91,30 @@ myproject/
 │   ├── deployment.yaml
 │   ├── service.yaml
 │   └── ingress.yaml
+├── Dockerfile
 ├── manage.py
 └── README.md
 ```
 
 ---
 
-## ⚙️ Kubernetes Deployment (AWS EKS)
+## ⚙️ Docker Build & Run
+
+### 1. Build Docker image
+
+```bash
+docker build -t myproject:latest .
+```
+
+### 2. Run container locally
+
+```bash
+docker run -p 8000:8000 myproject:latest
+```
+
+---
+
+## 🏋️ Kubernetes Deployment (AWS EKS)
 
 ### Deployment (`k8s/deployment.yaml`)
 
@@ -168,9 +187,7 @@ spec:
                   number: 80
 ```
 
----
-
-## 📌 Apply Kubernetes Manifests
+### Apply Kubernetes Manifests
 
 ```bash
 kubectl apply -f k8s/deployment.yaml
@@ -186,26 +203,33 @@ kubectl get svc
 kubectl get ingress
 ```
 
-Your Django app will be accessible via the ALB address shown under `kubectl get ingress`.
+Your Django app will be accessible through the ALB address listed under `kubectl get ingress`.
 
 ---
 
-## 💡 Deployment Notes
+## 💡 CI/CD Notes
 
-* Replace `<your-dockerhub-username>` with your Docker Hub username
-* Ensure EKS nodes have IAM permissions for ALB controller
-* Configure `aws-load-balancer-controller` in the `kube-system` namespace
-* Use proper Security Groups to allow HTTP/HTTPS traffic
+* Use GitHub Actions or AWS CodePipeline
+* Source stage: trigger on push to main branch
+* Build stage: Docker image build, basic security scan, push to ECR
+* Deploy stage: deploy to staging, run integration tests, deploy to production with manual approval
 
 ---
 
-## 💻 Contribution
+## 📄 Terraform Infrastructure Reference
 
-* Fork the project, submit PRs for bug fixes or new features
+For full infrastructure provisioning (VPC, ALB, RDS, EC2, Bastion host, Security Groups), refer to the Terraform repo:
+[https://github.com/Kunal2703/myproject-terraform](https://github.com/Kunal2703/myproject-terraform)
+
+---
+
+## 📝 Contribution
+
+* Fork the project, submit PRs for bug fixes or features
 * Open issues for suggestions or improvements
 
 ---
 
-## 📄 License
+## 📜 License
 
 MIT License – free to use and modify.
