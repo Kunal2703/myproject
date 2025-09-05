@@ -14,7 +14,7 @@ spec:
         app: myproject
     spec:
       nodeSelector:
-        nodegroup: django-ng   # ensures pods go to your node group
+        eks.amazonaws.com/nodegroup: django-ng   # correct label for EKS node group
       containers:
         - name: myproject
           image: 205930634535.dkr.ecr.ap-south-1.amazonaws.com/myproject:latest
