@@ -46,6 +46,7 @@ jobs:
           aws-secret-access-key: ${{ secrets.AWS_SECRET_ACCESS_KEY }}
           aws-region: ap-south-1
 
+
       - name: Update kubeconfig
         run: |
           aws eks update-kubeconfig --region ap-south-1 --name django-cluster
@@ -57,3 +58,4 @@ jobs:
 
       - name: Verify Deployment
         run: kubectl rollout status deployment/myproject
+
